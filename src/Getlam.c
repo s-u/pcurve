@@ -139,6 +139,10 @@ for(ik=0;ik<ns-1;ik++)
 left=(int)lammin;
 if(lammin>=ns) left=ns-1;
 right=left+1;
+/* right will cause overflow since it will read beyond the vector
+   if left is on the edge (this has caused removal from CRAN)
+   In that case we simply set right = left */
+if (right >= ns) right = ns - 1;
 w=lammin-left;
 for(j=0;j<p;j++)
 {
